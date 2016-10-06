@@ -1,10 +1,22 @@
 <html>
   <head>
     <title>FizzBuzz</title>
+    <link rel="stylesheet" type="text/css" href="main.min.css" />
   </head>
   <body>
-    <h1>FizzBuzz</h1>
-    <!--ANY DOM ELEMENTS YOU MAKE HERE  -->
+    <header>
+      <h1 class="parens">(fizzbuzz)M</h1>
+    </header>
+    <form id="fb-form">
+      <h2>Get Fizzbuzzin'</h2>
+      <label>Enter Range: </label>
+      <input id="fb-range" type="number" /><br />
+      <button id="go">Go!</button>
+    </form>
+    <div id="results">
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

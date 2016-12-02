@@ -1,8 +1,11 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const fs = require("fs");
 const port = 3000;
 
 const app = express();
+
+app.use(bodyParser.json());
 
 function loadTodos(callback) {
   return fs.readFile("./todos.json", (err, data) => {
@@ -20,6 +23,11 @@ app.route("/todos")
 .post((req, res) => {
   loadTodos((json) => {
     const todos = json.data;
+    const lastId = json.lastId;
+    let newTodo = req.body;
+    newTodo.completed = false;
+    newTodo.id = lastId ++;
+    res.status(200).end();
   })
 });
 

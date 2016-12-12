@@ -23,11 +23,16 @@ app.route("/todos")
 .post((req, res) => {
   loadTodos((json) => {
     const todos = json.data;
-    const lastId = json.lastId;
+    json.lastId++;
     let newTodo = req.body;
     newTodo.completed = false;
-    newTodo.id = lastId ++;
-    res.status(200).end();
+    newTodo.id = json.lastId;
+    todos.push(newTodo);
+    json.data = todos;
+    return fs.writeFile("./todos.json", JSON.stringify(json), (err) => {
+      if (err) throw err;
+      res.status(200).end();
+    });
   })
 });
 

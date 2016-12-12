@@ -1,8 +1,13 @@
+'use strict';
+
 const express = require("express");
 const fs = require("fs");
+const bodyParser = require("body-parser");
 const port = 3000;
 
 const app = express();
+
+app.use(bodyParser.json());
 
 function loadTodos(callback) {
   return fs.readFile("./todos.json", (err, data) => {
@@ -18,7 +23,18 @@ app.route("/todos")
   });
 })
 .post((req, res) => {
-  res.send("Creating a todo!");
+  let newTodo = req.body;
+  newTodo.completed = false;
+  console.log(newTodo);
+  loadTodos((json) => {
+    json.data.push(newTodo);
+    json.lastId++;
+    newTodo.id = json.lastId;
+    fs.writeFile("./todos.json", JSON.stringify(json), (err) => {
+      if (err) throw err;
+      res.status(200).end();
+    });
+  });
 });
 
 app.route("/todos/:id")

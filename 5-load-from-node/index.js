@@ -50,12 +50,35 @@ app.route("/todos/:id")
   });
 })
 .put((req, res) => {
-  const id = req.params.id;
-  res.send(`Updating todo #${id}`);
+  const id = parseInt(req.params.id);
+  console.log(`Updating ${id}`);
+  const newData = req.body;
+  loadTodos((json) => {
+    const todos = json.data;
+    for (const t of todos) {
+      if (t.id === id) {
+        t.completed = newData.completed;
+        t.text = newData.text;
+        json.data = todos;
+        return fs.writeFile("./todos.json", JSON.stringify(json), (err) => {
+          if (err) throw err;
+          res.status(200).end();
+        });
+      }
+    }
+    return res.status(404).send("No such todo");
+  });
 })
 .delete((req, res) => {
-  const id = req.params.id;
-  res.send(`Deleting todo #${id}`);
+  const id = parseInt(req.params.id);
+  loadTodos((json) =>{
+    const todos = json.data.map(t => {
+      if (t.id !== id) {
+        return t;
+      }
+    });
+    console.log(todos);
+  });
 });
 
 app.listen(port, () => {

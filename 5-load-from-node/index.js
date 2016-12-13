@@ -2,16 +2,21 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const port = 3000;
+const db = "./todos.json";
 
 const app = express();
 
 app.use(bodyParser.json());
 
 function loadTodos(callback) {
-  return fs.readFile("./todos.json", (err, data) => {
+  return fs.readFile(db, (err, data) => {
     if (err) throw err;
     callback(JSON.parse(data));
   });
+}
+
+function saveTodos(json, callback) {
+  return fs.writeFile(db, JSON.stringify(json), callback);
 }
 
 app.route("/todos")
@@ -29,7 +34,7 @@ app.route("/todos")
     newTodo.id = json.lastId;
     todos.push(newTodo);
     json.data = todos;
-    return fs.writeFile("./todos.json", JSON.stringify(json), (err) => {
+    return saveTodos(json, (err) => {
       if (err) throw err;
       res.status(200).end();
     });
@@ -60,7 +65,7 @@ app.route("/todos/:id")
         t.completed = newData.completed;
         t.text = newData.text;
         json.data = todos;
-        return fs.writeFile("./todos.json", JSON.stringify(json), (err) => {
+        return saveTodos(json, (err) => {
           if (err) throw err;
           res.status(200).end();
         });
@@ -72,12 +77,14 @@ app.route("/todos/:id")
 .delete((req, res) => {
   const id = parseInt(req.params.id);
   loadTodos((json) =>{
-    const todos = json.data.map(t => {
-      if (t.id !== id) {
-        return t;
-      }
+    const todos = json.data.filter(t => {
+      return t.id !== id;
     });
-    console.log(todos);
+    json.data = todos;
+    return saveTodos(json, (err) => {
+      if (err) throw err;
+      res.status(200).end();
+    });
   });
 });
 

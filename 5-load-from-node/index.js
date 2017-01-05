@@ -3,11 +3,9 @@ const bodyParser = require("body-parser");
 const fs = require("fs");
 const port = 3000;
 const db = "./todos.json";
-
 const app = express();
 
 app.use(bodyParser.json());
-
 function loadTodos(callback) {
   return fs.readFile(db, (err, data) => {
     if (err) throw err;

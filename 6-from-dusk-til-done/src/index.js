@@ -10,6 +10,7 @@ function getTodos() {
   )
   .done( (data) => {
     // This is bad and I should feel bad for writing it. Why?
+    console.log("Success!");
     todos = data;
     console.log(data);
   })

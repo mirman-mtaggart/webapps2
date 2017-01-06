@@ -1,4 +1,4 @@
-!function(e){function t(r){if(n[r])return n[r].exports;var i=n[r]={exports:{},id:r,loaded:!1};return e[r].call(i.exports,i,i.exports,t),i.loaded=!0,i.exports}var n={};return t.m=e,t.c=n,t.p="/assets/js",t(0)}([function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function i(){return s.default.ajax("/todos",{method:"GET"}).done(function(e){o=e,console.log(e)}).fail(function(){console.error("Something bad happened")})}var o,a=n(1),s=r(a);(0,s.default)(document).ready(function(){i()})},function(e,t,n){var r,i;/*!
+!function(e){function t(r){if(n[r])return n[r].exports;var i=n[r]={exports:{},id:r,loaded:!1};return e[r].call(i.exports,i,i.exports,t),i.loaded=!0,i.exports}var n={};return t.m=e,t.c=n,t.p="/assets/js",t(0)}([function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function i(){return s.default.ajax("/todos",{method:"GET"}).done(function(e){console.log("Success!"),o=e,console.log(e)}).fail(function(){console.error("Something bad happened")})}var o,a=n(1),s=r(a);(0,s.default)(document).ready(function(){i()})},function(e,t,n){var r,i;/*!
 	 * jQuery JavaScript Library v3.1.1
 	 * https://jquery.com/
 	 *

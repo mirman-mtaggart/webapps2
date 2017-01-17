@@ -1,5 +1,6 @@
 import $ from "jquery";
 import todoListItem from "./todoListItem";
+import newTodoForm from "./newTodoForm";
 var todos;
 
 function getTodos(callback) {
@@ -24,9 +25,13 @@ $(document).ready( () => {
   getTodos((data) => {
     todos = data;
     todos.forEach((todo) => {
-      $("#root").append(
+      $("#root")
+      .append(
         todoListItem(todo)
       );
     });
+    $("#root").append(
+      newTodoForm()
+    );
   });
-})
+});

@@ -34,13 +34,14 @@ app.route("/todos")
     const todos = json.data;
     json.lastId++;
     let newTodo = req.body;
+    console.log(req.body);
     newTodo.completed = false;
     newTodo.id = json.lastId;
     todos.push(newTodo);
     json.data = todos;
     return saveTodos(json, (err) => {
       if (err) throw err;
-      res.status(200).end();
+      res.status(200).send(json.data);
     });
   })
 });

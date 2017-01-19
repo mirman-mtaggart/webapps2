@@ -7,7 +7,7 @@ function getTodos(callback) {
   return $.ajax(
     "/todos",
     {
-      method: "GET"
+      type: "GET"
     }
   )
   .done( (data) => {

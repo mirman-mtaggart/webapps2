@@ -1,1 +1,1 @@
-{"data":[{"id":1,"text":"Get milk","completed":false},{"id":2,"text":"Shave the dog","completed":false},{"id":3,"text":"Annihilate the universe","completed":true},{"text":"stuff!!!!!","completed":false,"id":4},{"text":"Learn Rust","completed":false,"id":6},{"text":"Get a haircut","completed":false,"id":7},{"text":"Learn Go","completed":false,"id":8}],"lastId":8}
+{"data":[{"text":"Conquer the world","date":"2017-01-25","completed":false,"id":1}],"lastId":1}

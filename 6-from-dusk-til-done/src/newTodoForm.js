@@ -13,14 +13,20 @@ export default function newTodoForm() {
       .attr("placeholder","Get milk")
     )
     .append(
+      $(document.createElement("input"))
+      .attr("type","date")
+      .attr("id","new-todo-date")
+    )
+    .append(
       $(document.createElement("button"))
       .text("Add")
       .click((e) => {
         e.preventDefault();
         console.log("Adding a todo");
         const newTodo = {
-          text: $("#new-todo-text").val()
-        }
+          text: $("#new-todo-text").val(),
+          date: $("#new-todo-date").val()
+        };
          $.ajax({
            url: "/todos",
            type: "POST",

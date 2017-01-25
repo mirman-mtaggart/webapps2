@@ -15,15 +15,9 @@ export default function todoListItem(todo) {
       $(document.createElement("button"))
       .attr("type","button")
       .text("Delete")
-      .click((e) => {
-        $.ajax({
-          url: `/todos/${todo.id}`,
-          type: "DELETE",
-          contentType: "application/json",
-        })
-        .done((res) => {
-          console.log(res);
-        })
+      .click((e) =>{
+        console.log(e);
+        // Action goes here
       })
     )
     .addClass("todo");

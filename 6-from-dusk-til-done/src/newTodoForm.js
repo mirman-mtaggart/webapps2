@@ -27,15 +27,7 @@ export default function newTodoForm() {
           text: $("#new-todo-text").val(),
           date: $("#new-todo-date").val()
         };
-         $.ajax({
-           url: "/todos",
-           type: "POST",
-           contentType: "application/json",
-           data: JSON.stringify(newTodo)
-         })
-         .done((res) => {
-           console.log(res);
-         })
+        //Action goes here 
       })
     );
 }

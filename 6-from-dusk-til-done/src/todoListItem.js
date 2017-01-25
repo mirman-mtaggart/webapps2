@@ -16,8 +16,7 @@ export default function todoListItem(todo) {
       $(document.createElement("button"))
       .attr("type","button")
       .text("Delete")
-      .click((e) =>{
-        console.log(e);
+      .click(() =>{
         deleteTodo([],todo.id);
       })
     )

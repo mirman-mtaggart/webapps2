@@ -1,3 +1,20 @@
+import $ from "jquery";
+import todoListItem from "./todoListItem";
+import newTodoForm from "./newTodoForm";
+
+function updateTodos(todos) {
+  $("#root").empty();
+  todos.forEach((todo) => {
+    $("#root")
+    .append(
+      todoListItem(todo)
+    );
+  });
+  $("#root").append(
+    newTodoForm()
+  );
+}
+
 export default function reducer(state, action) {
   switch(action.type) {
     case "RETRIEVE_TODOS":
@@ -9,6 +26,7 @@ export default function reducer(state, action) {
       )
       .done( (data) => {
         console.log("Success!");
+        updateTodos(data);
         return data;
       })
       .fail( () => {
@@ -22,6 +40,7 @@ export default function reducer(state, action) {
         contentType: "application/json"
       })
       .done((res) => {
+        updateTodos(res);
         return res;
       });
     case "ADD_TODO":
@@ -32,6 +51,7 @@ export default function reducer(state, action) {
         data: JSON.stringify(action.newTodo)
       })
       .done((res) => {
+        updateTodos(res);
         return res;
       })
     default:

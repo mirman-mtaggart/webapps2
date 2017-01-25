@@ -1,4 +1,5 @@
 import $ from "jquery";
+import {deleteTodo} from "./actions";
 export default function todoListItem(todo) {
   return $(document.createElement("div"))
     .append(
@@ -17,7 +18,7 @@ export default function todoListItem(todo) {
       .text("Delete")
       .click((e) =>{
         console.log(e);
-        // Action goes here
+        deleteTodo([],todo.id);
       })
     )
     .addClass("todo");

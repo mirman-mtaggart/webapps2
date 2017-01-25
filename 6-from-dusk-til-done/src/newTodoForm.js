@@ -1,5 +1,5 @@
 import $ from "jquery";
-
+import {addTodo} from "./actions";
 export default function newTodoForm() {
   return $(document.createElement("form"))
     .append(
@@ -27,7 +27,7 @@ export default function newTodoForm() {
           text: $("#new-todo-text").val(),
           date: $("#new-todo-date").val()
         };
-        //Action goes here 
+        addTodo([],newTodo);
       })
     );
 }

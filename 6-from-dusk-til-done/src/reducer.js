@@ -3,6 +3,7 @@ import todoListItem from "./todoListItem";
 import newTodoForm from "./newTodoForm";
 
 function updateTodos(todos) {
+  console.log(todos);
   $("#root").empty();
   todos.forEach((todo) => {
     $("#root")
@@ -53,7 +54,18 @@ export default function reducer(state, action) {
       .done((res) => {
         updateTodos(res);
         return res;
+      });
+    case "UPDATE_TODO":
+      return $.ajax({
+        url: `/todos/${action.id}`,
+        type: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify(action.editedTodo)
       })
+      .done((res) => {
+        updateTodos(res);
+        return res;
+      });
     default:
       return state;
   }

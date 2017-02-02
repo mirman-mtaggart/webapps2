@@ -67,6 +67,7 @@ app.route("/todos/:id")
     const todos = json.data;
     for (const t of todos) {
       if (t.id === id) {
+        t.date = newData.date;
         t.completed = newData.completed;
         t.text = newData.text;
         json.data = todos;

@@ -29,7 +29,7 @@ export default function todoListItem(todo) {
       .text("Edit")
       .click((e) => {
         $(e.target).hide();
-        $(`#edit-todo-${todo.id}`).show();
+        $(`#edit-todo-${todo.id}`).slideDown();
       })
     )
     .append(
@@ -69,7 +69,7 @@ export default function todoListItem(todo) {
             date: $(`#edit-todo-date-${todo.id}`).val(),
             completed: $(`#todo-${todo.id}-completed`).is(":checked")
           }
-          $(e.target).parent().hide();
+          $(e.target).parent().slideUp();
           $(`#btn-edit-${todo.id}`).show();
           editTodo([],todo.id,editedTodo);
         })
@@ -80,7 +80,7 @@ export default function todoListItem(todo) {
         .text("Cancel")
         .click((e) => {
           console.log("Canceling");
-          $(e.target).parent().hide();
+          $(e.target).parent().slideUp();
           $(`#btn-edit-${todo.id}`).show();
         })
       )

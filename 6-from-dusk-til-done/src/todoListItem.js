@@ -1,3 +1,4 @@
+// My todoListItem
 import $ from "jquery";
 import {deleteTodo,editTodo} from "./actions";
 export default function todoListItem(todo) {

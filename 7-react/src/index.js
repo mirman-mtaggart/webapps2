@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import Message from "./components/Message";
+import Counter from "./components/Counter";
 
 class App extends React.Component {
 
@@ -10,6 +11,7 @@ class App extends React.Component {
       <div>
         <h1>Hello from React!</h1>
         <Message message={message} />
+        <Counter />
       </div>
     )
   }
